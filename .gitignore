@@ -1,0 +1,32 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+app/gradle.properties
+
+.idea/
+
+# Fastlane
+build_output
+
+# fastlane specific
+fastlane/report.xml
+fastlane/README.md
+
+# deliver temporary files
+fastlane/Preview.html
+
+# snapshot generated screenshots
+fastlane/screenshots/**/*.png
+fastlane/screenshots/screenshots.html
+
+# scan temporary files
+fastlane/test_output
+
+# backup files
+*.bak

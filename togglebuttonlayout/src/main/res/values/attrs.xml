@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ToggleButtonLayout">
+        <attr name="menu" format="reference"/>
+        <attr name="multipleSelection" format="boolean"/>
+        <attr name="allowDeselection" format="boolean"/>
+        <attr name="dividerColor" format="color"/>
+        <attr name="selectedColor" format="color"/>
+        <attr name="customLayout" format="reference"/>
+        <attr name="toggleMode" format="enum">
+            <enum name="wrap" value="0"/>
+            <enum name="even" value="1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

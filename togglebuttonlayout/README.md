@@ -2,30 +2,13 @@
 
 Easy creation and management of toggle buttons from the Material Design [spec](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons)
 
-![Single](/art/single.png "Single")
-![Multiple](/art/multiple.png "Multiple")
-![Segmented](/art/segmented.png "Segmented")
-
-[![Build Status](https://travis-ci.org/savvyapps/ToggleButtonLayout.svg?branch=master)](https://travis-ci.org/savvyapps/ToggleButtonLayout) [![](https://jitpack.io/v/savvyapps/ToggleButtonLayout.svg)](https://jitpack.io/#savvyapps/ToggleButtonLayout)
+![Single](../art/single.png "Single")
+![Multiple](../art/multiple.png "Multiple")
+![Segmented](../art/segmented.png "Segmented")
 
 # Dependency
-
-Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
-
 ```gradle
-allprojects {
-	repositories {
-		...
-		maven { url "https://jitpack.io" }
-	}
-}
-```
-
-Then, add the library to your project `build.gradle`
-```gradle
-dependencies {
-    implementation 'com.github.savvyapps:ToggleButtonLayout:latest.version.here'
-}
+compile 'com.savvyapps:togglebuttonlayout:latest.release.here'
 ```
 
 # Usage
@@ -60,8 +43,8 @@ where the toggles menu looks like:
 You can safely ignore lint warnings about needing a title on each item, unless you want a title to appear on each item.
 
 Later, you can get the selected items via:
-```java
-List<Toggle> selectedToggles = toggleButtonLayout.getSelectedToggles();
+```kotlin
+val selectedToggles = toggleButtonLayout.getSelectedToggles()
 //do what you need to with these selected toggles
 ```
 
@@ -84,20 +67,3 @@ You can customize the `ToggleButtonLayout` via XML attributes:
 ```
 
 If you use the `customLayout` attribute, the layout is expected to have a `TextView` with an ID of `android:id="@android:id/text1"` if you are using a title, and if you are using an icon, `android:id="@android:id/icon"`. You can omit either of these if you are only using a menu resource with a title or just an icon. See the sample for more.
-
-License
---------
-
-    Copyright 2017 Savvy Apps
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
