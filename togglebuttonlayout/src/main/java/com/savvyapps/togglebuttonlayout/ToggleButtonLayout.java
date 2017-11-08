@@ -38,10 +38,17 @@ public class ToggleButtonLayout extends CardView {
 
     @Retention(SOURCE)
     @IntDef({MODE_WRAP, MODE_EVEN})
-    public @interface Mode {
+    @interface Mode {
     }
 
+    /**
+     * Toggles will wrap content. Default
+     */
     public static final int MODE_WRAP = 0;
+
+    /**
+     * Toggles will be evenly distributed within view
+     */
     public static final int MODE_EVEN = 1;
 
     private LinearLayout linearLayout;
@@ -59,7 +66,7 @@ public class ToggleButtonLayout extends CardView {
     @Mode
     private int mode;
     //callbacks
-    private OnToggleSelectedListener listener;
+    private OnToggledListener listener;
 
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
@@ -73,7 +80,7 @@ public class ToggleButtonLayout extends CardView {
             } else {
                 setToggled(toggle.getId(), !toggle.selected);
                 if (listener != null) {
-                    listener.onToggleSelected(toggle, toggle.selected);
+                    listener.onToggled(toggle, toggle.selected);
                 }
             }
         }
@@ -148,7 +155,7 @@ public class ToggleButtonLayout extends CardView {
      *
      * @param toggle the toggle to add
      */
-    public void addToggle(Toggle toggle) {
+    public void addToggle(@NonNull Toggle toggle) {
         toggles.add(toggle);
         ToggleView toggleView = new ToggleView(getContext(), toggle, layoutRes);
         toggleView.setOnClickListener(onClickListener);
@@ -171,7 +178,7 @@ public class ToggleButtonLayout extends CardView {
      *
      * @param listener listener
      */
-    public void setOnToggleSelectedListener(OnToggleSelectedListener listener) {
+    public void setOnToggleSelectedListener(OnToggledListener listener) {
         this.listener = listener;
     }
 
@@ -204,6 +211,11 @@ public class ToggleButtonLayout extends CardView {
         }
     }
 
+    /**
+     * Manually set the toggled state of the specified toggle. This will not notify any {@link OnToggledListener}
+     * @param toggleId the id of the toggle
+     * @param toggled true if should be toggled on, false otherwise
+     */
     public void setToggled(int toggleId, boolean toggled) {
         for (Toggle toggle : toggles) {
             if (toggle.getId() == toggleId) {
@@ -223,6 +235,10 @@ public class ToggleButtonLayout extends CardView {
         }
     }
 
+    /**
+     * Get a list of selected toggles
+     * @return the selected toggles
+     */
     @NonNull
     public List<Toggle> getSelectedToggles() {
         List<Toggle> selectedToggles = new ArrayList<>();
@@ -247,6 +263,7 @@ public class ToggleButtonLayout extends CardView {
     /**
      * Default view for Toggle
      */
+    @SuppressLint("ViewConstructor")
     static class ToggleView extends FrameLayout {
 
         Toggle toggle;
@@ -279,7 +296,16 @@ public class ToggleButtonLayout extends CardView {
         }
     }
 
-    public interface OnToggleSelectedListener {
-        void onToggleSelected(Toggle toggle, boolean selected);
+    /**
+     * Listener for when a toggle is toggled
+     */
+    public interface OnToggledListener {
+
+        /**
+         * The toggle has been toggled
+         * @param toggle the toggle
+         * @param selected true if selected, false if unselected
+         */
+        void onToggled(Toggle toggle, boolean selected);
     }
 }

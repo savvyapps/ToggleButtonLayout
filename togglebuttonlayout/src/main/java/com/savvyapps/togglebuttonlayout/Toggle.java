@@ -1,7 +1,7 @@
 package com.savvyapps.togglebuttonlayout;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * An item within a {@link ToggleButtonLayout}
@@ -13,7 +13,7 @@ public class Toggle {
     private CharSequence title;
     protected boolean selected;
 
-    public Toggle(int id, @NonNull Drawable icon, @NonNull CharSequence title) {
+    public Toggle(int id, @Nullable Drawable icon, @Nullable CharSequence title) {
         if (id == 0) {
             throw new IllegalArgumentException("Toggle must have a non-zero id");
         }
@@ -22,10 +22,18 @@ public class Toggle {
         this.title = title;
     }
 
+    /**
+     * The ID provided within the Toggle
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * The icon drawable inflated by the menu resource or passed during creation
+     * @return the icon
+     */
     public Drawable getIcon() {
         return icon;
     }
@@ -34,6 +42,10 @@ public class Toggle {
         return title;
     }
 
+    /**
+     * The selection state of the toggle
+     * @return true if toggle is selected, false otherwise
+     */
     public boolean isSelected() {
         return selected;
     }

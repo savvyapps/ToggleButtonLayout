@@ -36,9 +36,9 @@ public class ToggleButtonLayoutActivity extends AppCompatActivity {
             }
         });
 
-        toggleButtonLayout.setOnToggleSelectedListener(new ToggleButtonLayout.OnToggleSelectedListener() {
+        toggleButtonLayout.setOnToggleSelectedListener(new ToggleButtonLayout.OnToggledListener() {
             @Override
-            public void onToggleSelected(Toggle toggle, boolean selected) {
+            public void onToggled(Toggle toggle, boolean selected) {
                 Snackbar.make(root, "Toggle " + toggle.getId() + " selected state " + selected, Snackbar.LENGTH_LONG)
                         .show();
             }
