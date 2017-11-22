@@ -4,7 +4,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
@@ -21,8 +21,8 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     targetSdkVersion = compileSdkVersion
-    buildToolsVersion = '26.0.2'
-    supportLibVersion = '26.1.0'
+    buildToolsVersion = '27.0.0'
+    supportLibVersion = '27.0.1'
 }
