@@ -86,7 +86,8 @@ You can customize the `ToggleButtonLayout` via XML attributes:
 If you use the `customLayout` attribute, the layout is expected to have a `TextView` with an ID of `android:id="@android:id/text1"` if you are using a title, and if you are using an icon, `android:id="@android:id/icon"`. You can omit either of these if you are only using a menu resource with a title or just an icon. See the sample for more.
 
 ## Notes
-- If you need to rely on a Java version of ToggleButtonLayout, you can use the `java` branch.
+- If you need to rely on a Java version of `ToggleButtonLayout`, you can use the `java` branch.
+- Please open an issue or make a pull request for additional features you might want. For PRs, please follow the [Android Kotlin Style Guide](https://android.github.io/kotlin-guides/style.html)
 
 License
 --------
