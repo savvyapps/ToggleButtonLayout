@@ -8,7 +8,7 @@ Easy creation and management of toggle buttons from the Material Design [spec](h
 
 [![Build Status](https://travis-ci.org/savvyapps/ToggleButtonLayout.svg?branch=master)](https://travis-ci.org/savvyapps/ToggleButtonLayout) [![](https://jitpack.io/v/savvyapps/ToggleButtonLayout.svg)](https://jitpack.io/#savvyapps/ToggleButtonLayout)
 
-# Dependency
+## Dependency
 
 Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
 
@@ -28,7 +28,7 @@ dependencies {
 }
 ```
 
-# Usage
+## Usage
 Add the ToggleButtonLayout to your layout:
 ```xml
 <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
@@ -60,12 +60,12 @@ where the toggles menu looks like:
 You can safely ignore lint warnings about needing a title on each item, unless you want a title to appear on each item.
 
 Later, you can get the selected items via:
-```java
-List<Toggle> selectedToggles = toggleButtonLayout.getSelectedToggles();
+```kotlin
+val selectedToggles = toggleButtonLayout.getSelectedToggles()
 //do what you need to with these selected toggles
 ```
 
-# Customization
+## Customization
 You can customize the `ToggleButtonLayout` via XML attributes:
 ```xml
 <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
@@ -84,6 +84,9 @@ You can customize the `ToggleButtonLayout` via XML attributes:
 ```
 
 If you use the `customLayout` attribute, the layout is expected to have a `TextView` with an ID of `android:id="@android:id/text1"` if you are using a title, and if you are using an icon, `android:id="@android:id/icon"`. You can omit either of these if you are only using a menu resource with a title or just an icon. See the sample for more.
+
+## Notes
+- If you need to rely on a Java version of ToggleButtonLayout, you can use the `java` branch.
 
 License
 --------
