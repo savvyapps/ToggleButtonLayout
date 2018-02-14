@@ -1,6 +1,6 @@
 # ToggleButtonLayout
 
-Easy creation and management of toggle buttons from the Material Design [spec](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons)
+Easy creation and management of toggle buttons from the Material Design [spec](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons). Read more about ToggleButtonLayout in our [blog post](https://savvyapps.com/blog/toggle-button-solution-android-app).
 
 ![Single](/art/single.png "Single")
 ![Multiple](/art/multiple.png "Multiple")
