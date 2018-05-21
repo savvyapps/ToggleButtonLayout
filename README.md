@@ -64,6 +64,13 @@ Later, you can get the selected items via:
 val selectedToggles = toggleButtonLayout.getSelectedToggles()
 //do what you need to with these selected toggles
 ```
+And you can listen for when toggles are switched:
+```kotlin
+toggleButtonLayout.onToggledListener = { toggle, selected ->
+    Snackbar.make(root, "Toggle " + toggle.id + " selected state " + selected, Snackbar.LENGTH_LONG)
+            .show()
+}
+```
 
 ## Customization
 You can customize the `ToggleButtonLayout` via XML attributes:
