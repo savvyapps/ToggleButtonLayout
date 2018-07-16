@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
@@ -16,7 +15,7 @@
             android:id="@+id/toolbar"
             style="@style/Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="?attr/actionBarSize" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -37,10 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
-                app:menu="@menu/toggles"/>
+                app:menu="@menu/toggles" />
 
             <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-                android:id="@+id/toggleMultiple"
+                android:id="@+id/toggleButtonLayoutMultiple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -48,10 +47,10 @@
                 android:layout_marginTop="16dp"
                 app:dividerColor="@android:color/darker_gray"
                 app:menu="@menu/toggles_multiple"
-                app:multipleSelection="true"/>
+                app:multipleSelection="true" />
 
             <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-                android:id="@+id/toggleText"
+                android:id="@+id/toggleButtonLayoutText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -64,7 +63,21 @@
                 app:dividerColor="@android:color/darker_gray"
                 app:menu="@menu/toggles_text"
                 app:selectedColor="?attr/colorAccent"
-                app:toggleMode="even"/>
+                app:toggleMode="even" />
+
+            <Button
+                android:id="@+id/buttonSetSelectedColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Toggle Selected Color" />
+
+            <Button
+                android:id="@+id/buttonSetDividerColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Toggle Divider Color" />
 
         </LinearLayout>
 

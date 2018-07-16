@@ -19,6 +19,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 /**
  * ToggleButtonLayout is a layout used to group related options. Layout and spacing is arranged to
  * convey that certain toggle buttons are part of a group.
@@ -36,6 +37,8 @@ class ToggleButtonLayout : CardView {
          * Toggles will be evenly distributed within view
          */
         const val MODE_EVEN = 1
+
+        private const val TAG_DIVIDER = "divider"
     }
 
     private lateinit var linearLayout: LinearLayout
@@ -46,9 +49,27 @@ class ToggleButtonLayout : CardView {
     private var multipleSelection: Boolean = false
     private var allowDeselection = true
     @ColorInt
-    private var dividerColor: Int? = null
+    var dividerColor: Int? = null
+        set(value) {
+            field = value
+            if (toggles.isNotEmpty()) {
+                val views = ArrayList<View>()
+                linearLayout.findViewsWithText(views, TAG_DIVIDER, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION)
+                views.forEach {
+                    if (value == null) {
+                        linearLayout.removeView(it)
+                    } else {
+                        it.setBackgroundColor(value)
+                    }
+                }
+            }
+        }
     @ColorInt
-    private var selectedColor: Int? = null
+    var selectedColor: Int = 0
+        set(value) {
+            field = value
+            adjustColorOfSelected()
+        }
     @LayoutRes
     private var layoutRes: Int? = null
     private var mode: Int = 0
@@ -107,7 +128,7 @@ class ToggleButtonLayout : CardView {
             val mode = a.getInt(R.styleable.ToggleButtonLayout_toggleMode, MODE_WRAP)
             this.mode = mode
         }
-        selectedColor = a.getColor(R.styleable.ToggleButtonLayout_selectedColor, Utils.getThemeAttrColor(getContext(), R.attr.colorControlHighlight))
+        selectedColor = a.getColor(R.styleable.ToggleButtonLayout_selectedColor, Utils.getThemeAttrColor(context, R.attr.colorControlHighlight))
         //make sure this one is last
         if (a.hasValue(R.styleable.ToggleButtonLayout_menu)) {
             inflateMenu(a.getResourceId(R.styleable.ToggleButtonLayout_menu, 0))
@@ -149,9 +170,11 @@ class ToggleButtonLayout : CardView {
         toggles.add(toggle)
         val toggleView = ToggleView(context, toggle, layoutRes)
         toggleView.setOnClickListener(onClickListener)
+        val dividerColor = dividerColor
         if (dividerColor != null && toggles.size > 1) {
             val divider = View(context)
-            divider.setBackgroundColor(dividerColor!!)
+            divider.contentDescription = TAG_DIVIDER
+            divider.setBackgroundColor(dividerColor)
             val params = LinearLayout.LayoutParams(Utils.dpToPx(context, 1), ViewGroup.LayoutParams.MATCH_PARENT)
             divider.layoutParams = params
             linearLayout.addView(divider)
@@ -218,11 +241,31 @@ class ToggleButtonLayout : CardView {
         }
     }
 
+    /**
+     * Removes and recreates all toggles. This is needed if certain UI states change
+     */
+    private fun resetTogglesIfNeeded() {
+        if (toggles.isNotEmpty()) {
+            linearLayout.removeAllViews()
+            val currentToggles = toggles.toList()
+            toggles.clear()
+            currentToggles.forEach { addToggle(it) }
+        }
+    }
+
+    private fun adjustColorOfSelected() {
+        val selectedToggles = getSelectedToggles()
+        selectedToggles.forEach {
+            val view = linearLayout.findViewById<View>(it.id)
+            view.background = ColorDrawable(selectedColor)
+        }
+    }
+
     private fun toggleState(toggle: Toggle) {
         val view = linearLayout.findViewById<View>(toggle.id)
         view.isSelected = toggle.isSelected
         if (toggle.isSelected) {
-            view.background = ColorDrawable(selectedColor!!)
+            view.background = ColorDrawable(selectedColor)
         } else {
             view.background = null
         }
