@@ -43,11 +43,32 @@ class ToggleButtonLayout : CardView {
 
     private lateinit var linearLayout: LinearLayout
 
-    private val toggles = mutableListOf<Toggle>()
+    /**
+     * The current list of toggles. Do not modify directly, instead call [addToggle] and [inflateMenu] methods
+     */
+    val toggles = mutableListOf<Toggle>()
 
-    //customization
-    private var multipleSelection: Boolean = false
-    private var allowDeselection = true
+
+    /**
+     * Set if we are going to allow multiple selection or not. This will also call [.reset]
+     * in order to prevent strange behaviour switching between multiple and single selection
+     *
+     */
+    var multipleSelection: Boolean = false
+        set(value) {
+            field = value
+            reset()
+        }
+
+    /**
+     * Allow selected items to be de-selected. Defaults to true.
+     *
+     */
+    var allowDeselection = true
+
+    /**
+     * Set the color of the divider between toggles. Set to null to not include dividers
+     */
     @ColorInt
     var dividerColor: Int? = null
         set(value) {
@@ -64,12 +85,17 @@ class ToggleButtonLayout : CardView {
                 }
             }
         }
+
+    /**
+     * Set the color to show when the toggle is selected
+     */
     @ColorInt
     var selectedColor: Int = 0
         set(value) {
             field = value
             adjustColorOfSelected()
         }
+
     @LayoutRes
     private var layoutRes: Int? = null
     private var mode: Int = 0
@@ -157,7 +183,7 @@ class ToggleButtonLayout : CardView {
      *
      * @return the selected toggles
      */
-    fun getSelectedToggles(): List<Toggle> {
+    fun selectedToggles(): List<Toggle> {
         return toggles.filter { it.isSelected }
     }
 
@@ -184,26 +210,6 @@ class ToggleButtonLayout : CardView {
             toggleView.layoutParams = params
         }
         linearLayout.addView(toggleView)
-    }
-
-    /**
-     * Set if we are going to allow multiple selection or not. This will also call [.reset]
-     * in order to prevent strange behaviour switching between multiple and single selection
-     *
-     * @param multipleSelection true if allowing multiple selection, false otherwise
-     */
-    fun setMultipleSelection(multipleSelection: Boolean) {
-        this.multipleSelection = multipleSelection
-        reset()
-    }
-
-    /**
-     * Allow selected items to be de-selected. Defaults to true.
-     *
-     * @param allowDeselection allow de-selection
-     */
-    fun setAllowDeselection(allowDeselection: Boolean) {
-        this.allowDeselection = allowDeselection
     }
 
     /**
@@ -254,7 +260,7 @@ class ToggleButtonLayout : CardView {
     }
 
     private fun adjustColorOfSelected() {
-        val selectedToggles = getSelectedToggles()
+        val selectedToggles = selectedToggles()
         selectedToggles.forEach {
             val view = linearLayout.findViewById<View>(it.id)
             view.background = ColorDrawable(selectedColor)
@@ -276,8 +282,8 @@ class ToggleButtonLayout : CardView {
      */
     @SuppressLint("ViewConstructor")
     internal class ToggleView(context: Context, toggle: Toggle, @LayoutRes layoutRes: Int?) : FrameLayout(context) {
-        var textView: TextView? = null
-        var imageView: ImageView? = null
+        private val textView: TextView?
+        private val imageView: ImageView?
 
         init {
             id = toggle.id
