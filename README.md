@@ -61,7 +61,7 @@ You can safely ignore lint warnings about needing a title on each item, unless y
 
 Later, you can get the selected items via:
 ```kotlin
-val selectedToggles = toggleButtonLayout.getSelectedToggles()
+val selectedToggles = toggleButtonLayout.selectedToggles()
 //do what you need to with these selected toggles
 ```
 And you can listen for when toggles are switched:
