@@ -109,14 +109,14 @@ class ToggleButtonLayout : CardView {
             //do nothing
         } else {
             setToggled(toggle.id, !toggle.isSelected)
-            onToggledListener?.invoke(toggle, toggle.isSelected)
+            onToggledListener?.invoke(this@ToggleButtonLayout, toggle, toggle.isSelected)
         }
     }
 
     /**
      * Listen for when toggles get selected and deselected
      */
-    var onToggledListener: ((toggle: Toggle, selected: Boolean) -> Unit)? = null
+    var onToggledListener: ((v: View?, toggle: Toggle, selected: Boolean) -> Unit)? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -173,7 +173,9 @@ class ToggleButtonLayout : CardView {
         MenuInflater(context).inflate(menuId, menu)
         for (i in 0 until menu.size()) {
             val item = menu.getItem(i)
-            val toggle = Toggle(item.itemId, item.icon, item.title)
+            val toggle = Toggle(item.itemId, item.icon, item.title).apply {
+                this.parentRef = this@ToggleButtonLayout
+            }
             addToggle(toggle)
         }
     }
