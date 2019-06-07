@@ -27,6 +27,12 @@ class Toggle(
      */
     var isSelected: Boolean = false
 
+    internal var parentRef: ToggleButtonLayout? = null
+
+    fun getToggleButtonLayout(): ToggleButtonLayout? {
+        return parentRef
+    }
+
     init {
         if (id == 0) {
             throw IllegalArgumentException("Toggle must have a non-zero id")
