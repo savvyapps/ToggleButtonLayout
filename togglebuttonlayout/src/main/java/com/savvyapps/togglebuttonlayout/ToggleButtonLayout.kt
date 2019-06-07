@@ -19,11 +19,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
-@Suppress("MemberVisibilityCanBePrivate", "unused")
 /**
  * ToggleButtonLayout is a layout used to group related options. Layout and spacing is arranged to
  * convey that certain toggle buttons are part of a group.
  */
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class ToggleButtonLayout : CardView {
 
     companion object {
@@ -116,7 +116,7 @@ class ToggleButtonLayout : CardView {
     /**
      * Listen for when toggles get selected and deselected
      */
-    var onToggledListener: ((v: View?, toggle: Toggle, selected: Boolean) -> Unit)? = null
+    var onToggledListener: ((toggleButtonLayout: ToggleButtonLayout?, toggle: Toggle, selected: Boolean) -> Unit)? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -173,9 +173,7 @@ class ToggleButtonLayout : CardView {
         MenuInflater(context).inflate(menuId, menu)
         for (i in 0 until menu.size()) {
             val item = menu.getItem(i)
-            val toggle = Toggle(item.itemId, item.icon, item.title).apply {
-                this.parentRef = this@ToggleButtonLayout
-            }
+            val toggle = Toggle(item.itemId, item.icon, item.title)
             addToggle(toggle)
         }
     }
@@ -212,6 +210,8 @@ class ToggleButtonLayout : CardView {
             toggleView.layoutParams = params
         }
         linearLayout.addView(toggleView)
+        toggle.toggleView = toggleView
+        toggle.toggleButtonLayout = this
     }
 
     /**
@@ -276,37 +276,6 @@ class ToggleButtonLayout : CardView {
             view.background = ColorDrawable(selectedColor)
         } else {
             view.background = null
-        }
-    }
-
-    /**
-     * Default view for Toggle
-     */
-    @SuppressLint("ViewConstructor")
-    internal class ToggleView(context: Context, toggle: Toggle, @LayoutRes layoutRes: Int?) : FrameLayout(context) {
-        private val textView: TextView?
-        private val imageView: ImageView?
-
-        init {
-            id = toggle.id
-            if (layoutRes != null) {
-                View.inflate(context, layoutRes, this)
-                textView = findViewById(android.R.id.text1)
-                imageView = findViewById(android.R.id.icon)
-            } else {
-                textView = TextView(context)
-                imageView = ImageView(context)
-                addView(imageView)
-                addView(textView)
-                val eightDp = Utils.dpToPx(getContext(), 8)
-                setPadding(eightDp, eightDp, eightDp, eightDp)
-            }
-            setTag(R.id.tb_toggle_id, toggle)
-            textView?.text = toggle.title
-            if (toggle.icon != null) {
-                imageView?.setImageDrawable(toggle.icon)
-            }
-            foreground = Utils.getThemeAttrDrawable(getContext(), R.attr.selectableItemBackground)
         }
     }
 }

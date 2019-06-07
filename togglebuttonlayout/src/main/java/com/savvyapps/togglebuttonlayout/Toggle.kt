@@ -27,11 +27,18 @@ class Toggle(
      */
     var isSelected: Boolean = false
 
-    internal var parentRef: ToggleButtonLayout? = null
 
-    fun getToggleButtonLayout(): ToggleButtonLayout? {
-        return parentRef
-    }
+    /**
+     * Get the parent view of the toggle. Null if not yet inflated
+     */
+    var toggleButtonLayout: ToggleButtonLayout? = null
+        internal set
+
+    /**
+     * The current toggle view. Null if not yet inflated
+     */
+    var toggleView: ToggleView? = null
+        internal set
 
     init {
         if (id == 0) {
