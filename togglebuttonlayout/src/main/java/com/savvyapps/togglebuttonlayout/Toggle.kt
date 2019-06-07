@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable
 /**
  * An item within a [ToggleButtonLayout]
  */
-class Toggle(
+data class Toggle(
 
         /**
          * The ID provided within the Toggle
@@ -20,7 +20,8 @@ class Toggle(
         /**
          * Optional title
          */
-        val title: CharSequence?) {
+        val title: CharSequence?
+) {
 
     /**
      * The selection state of the toggle
@@ -29,13 +30,13 @@ class Toggle(
 
 
     /**
-     * Get the parent view of the toggle. Null if not yet inflated
+     * Get the parent view of the toggle. Null if its view has not been inflated
      */
     var toggleButtonLayout: ToggleButtonLayout? = null
         internal set
 
     /**
-     * The current toggle view. Null if not yet inflated
+     * The current toggle view. Null if its view has not been inflated
      */
     var toggleView: ToggleView? = null
         internal set

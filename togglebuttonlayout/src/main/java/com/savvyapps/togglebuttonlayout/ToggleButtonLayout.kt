@@ -116,7 +116,7 @@ class ToggleButtonLayout : CardView {
     /**
      * Listen for when toggles get selected and deselected
      */
-    var onToggledListener: ((toggleButtonLayout: ToggleButtonLayout?, toggle: Toggle, selected: Boolean) -> Unit)? = null
+    var onToggledListener: ((toggleButtonLayout: ToggleButtonLayout, toggle: Toggle, selected: Boolean) -> Unit)? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
