@@ -2,9 +2,9 @@ package com.savvyapps.togglebuttonlayout.sample
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_toggle_button.*
 
 class ToggleButtonLayoutActivity : AppCompatActivity() {

@@ -99,7 +99,7 @@ If you use the `customLayout` attribute, the layout is expected to have a `TextV
 License
 --------
 
-    Copyright 2018 Savvy Apps
+    Copyright 2019 Savvy Apps
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.annotation.ColorInt
-import android.support.annotation.LayoutRes
-import android.support.annotation.MenuRes
-import android.support.v7.view.menu.MenuBuilder
-import android.support.v7.widget.CardView
+import androidx.annotation.ColorInt
+import androidx.annotation.LayoutRes
+import androidx.annotation.MenuRes
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.cardview.widget.CardView
 import android.util.AttributeSet
 import android.view.MenuInflater
 import android.view.View

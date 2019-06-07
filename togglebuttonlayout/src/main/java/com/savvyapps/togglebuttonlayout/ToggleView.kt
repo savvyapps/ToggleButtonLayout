@@ -2,7 +2,7 @@ package com.savvyapps.togglebuttonlayout
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
